@@ -1,4 +1,10 @@
 terraform {
+  cloud { 
+    organization = "ctcampbellcom" 
+    workspaces { 
+      name = "github-ctcampbellcom" 
+    } 
+  }
   required_providers {
     github = {
       source  = "integrations/github"
@@ -19,6 +25,10 @@ resource "github_enterprise_organization" "ctcampbellcom-terraform" {
   enterprise_id = data.github_enterprise.ctcampbellcom.id
   admin_logins = ["ctcampbell"]
   billing_email = "ctcampbell@github.com"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 provider "github" {

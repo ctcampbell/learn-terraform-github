@@ -18,6 +18,15 @@ resource "github_membership" "membership_for_user_y" {
   role     = "member"
 }
 
+resource "github_repository" "terraform-configurations" {
+  name = "terraform-configurations"
+  visibility = "private"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
 resource "github_repository" "test_repository_1" {
   name = "test-repository-1"
   # allow_rebase_merge = true
