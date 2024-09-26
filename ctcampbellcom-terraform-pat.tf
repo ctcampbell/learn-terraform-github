@@ -17,7 +17,7 @@ resource "github_membership" "membership_for_user_y" {
   role     = "member"
 }
 
-resource "github_repository" "allow_rebase_merge" {
+resource "github_repository" "test_repository_1" {
   provider = github.ctcampbellcom-terraform-pat
   name = "test-repository-1"
   # allow_rebase_merge = true

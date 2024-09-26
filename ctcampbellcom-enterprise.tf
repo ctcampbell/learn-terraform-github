@@ -8,9 +8,7 @@ terraform {
 }
 
 # Configure the GitHub Provider
-provider "github" {
-  owner = "ctcampbellcom"
-}
+provider "github" {}
 
 data "github_enterprise" "ctcampbellcom" {
   slug = "ctcampbellcom"
