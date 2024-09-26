@@ -14,21 +14,26 @@ data "github_enterprise" "ctcampbellcom" {
   slug = "ctcampbellcom"
 }
 
-resource "github_enterprise_organization" "ctcampbellcom-terraform-pat" {
-  name = "ctcampbellcom-terraform-pat"
+resource "github_enterprise_organization" "ctcampbellcom-terraform" {
+  name = "ctcampbellcom-terraform"
   enterprise_id = data.github_enterprise.ctcampbellcom.id
   admin_logins = ["ctcampbell"]
   billing_email = "ctcampbell@github.com"
 }
 
 provider "github" {
-  alias = "ctcampbellcom-terraform-pat"
-  owner = resource.github_enterprise_organization.ctcampbellcom-terraform-pat.name
+  alias = "ctcampbellcom-terraform"
+  owner = resource.github_enterprise_organization.ctcampbellcom-terraform.name
 }
 
-module "ctcampbellcom-terraform-pat" {
-  source    = "./ctcampbellcom-terraform-pat"
+provider "github" {
+  alias = "ctcampbellcom-terraform-pat"
+  owner = resource.github_enterprise_organization.ctcampbellcom-terraform.name
+}
+
+module "ctcampbellcom-terraform" {
+  source    = "./ctcampbellcom-terraform"
   providers = {
-    github = github.ctcampbellcom-terraform-pat
+    github = github.ctcampbellcom-terraform
   }
 }
