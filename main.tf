@@ -26,11 +26,6 @@ provider "github" {
   owner = resource.github_enterprise_organization.ctcampbellcom-terraform.name
 }
 
-provider "github" {
-  alias = "ctcampbellcom-terraform-pat"
-  owner = resource.github_enterprise_organization.ctcampbellcom-terraform.name
-}
-
 module "ctcampbellcom-terraform" {
   source    = "./ctcampbellcom-terraform"
   providers = {
